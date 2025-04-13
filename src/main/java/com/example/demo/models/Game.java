@@ -12,16 +12,18 @@ public class Game {
     private String description;
     private double price;
     private List<String> imgURL;  // Changed from String to List<String>
+    private int indexPrincipal;
     
     // Constructors
     public Game() {}
     
-    public Game(String title, String genre, String description, double price, List<String> imgURL) {
+    public Game(String title, String genre, String description, double price, List<String> imgURL, int indexPrincipal) {
         this.title = title;
         this.genre = genre;
         this.description = description;
         this.price = price;
         this.imgURL = imgURL;
+        this.indexPrincipal = indexPrincipal;
     }
     
     // Getters and Setters
@@ -40,6 +42,15 @@ public class Game {
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
     
+    public int getIndexPrincipal() {
+    return indexPrincipal;
+}
+
+public void setIndexPrincipal(int indexPrincipal) {
+    this.indexPrincipal = indexPrincipal;
+}
+
+    
     public List<String> getImgURL() {
         return this.imgURL;
     }
@@ -48,7 +59,7 @@ public class Game {
         this.imgURL = imgURL;
     }
     
-    @Override
+   @Override
     public String toString() {
         return "Game{" +
                 "id='" + id + '\'' +
@@ -57,6 +68,7 @@ public class Game {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", imgURL=" + imgURL +
+                ", indPrincipal=" + indexPrincipal +
                 '}';
     }
 }

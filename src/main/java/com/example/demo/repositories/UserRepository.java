@@ -7,5 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.example.demo.models.UserModel;
 
 public interface UserRepository extends MongoRepository<UserModel, String>{
-    Optional<UserModel> findByUsername(String username);
+    Optional<UserModel> findByEmail(String email);
 }

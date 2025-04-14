@@ -24,30 +24,32 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserModel user) {
-        System.out.println("Received username: " + user.getUsername());
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body(Map.of("Failure","User already exists"));
+        System.out.println("Received email: " + user.getEmail());
+
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest().body(Map.of("Failure", "Email already exists"));
         }
-        //user.setPassword(user.getPassword());
+
         userRepository.save(user);
-        return ResponseEntity.ok(Map.of("Success","User registered successfully"));
+        return ResponseEntity.ok(Map.of("Success", "User registered successfully"));
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody UserModel user) {
-        System.out.println("Received username: " + user.getUsername());
-        UserModel existingUser = userRepository.findByUsername(user.getUsername()).orElse(null);
-        if (existingUser == null) {
-            return ResponseEntity.badRequest().body(Map.of("Failure","Invalid credentials"));
+        System.out.println("Received email: " + user.getEmail());
+
+        UserModel existingUser = userRepository.findByEmail(user.getEmail()).orElse(null);
+        if (existingUser == null || !existingUser.getPassword().equals(user.getPassword())) {
+            return ResponseEntity.badRequest().body(Map.of("Failure", "Invalid credentials"));
         }
+
         Map<String, Object> response = new HashMap<>();
-        String ID = existingUser.getId();
-        String Carrinho = existingUser.getCarrinho().toString();
-        String Jogos = existingUser.getJogos().toString();
-        response.put("userId", ID);
-        response.put("userCarrinho", Carrinho);
-        response.put("userJogos", Jogos);
-        System.out.println(Jogos);
+        response.put("userEmail", existingUser.getEmail());
+        response.put("userCarrinho", existingUser.getCarrinho());
+        response.put("userJogos", existingUser.getJogos());
+
         return ResponseEntity.ok(response);
     }
+
 }
+

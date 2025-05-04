@@ -55,7 +55,7 @@ public class AuthController {
         System.out.println("User found: " + existingUser);
 
         Map<String, Object> response = new HashMap<>();
-        response.put("user", existingUser);
+        response.put("user", existingUser); // CORRIGIR!!!!!!!!!!!!!!!!!!!!!!!!
         response.put("userCarrinho", existingUser.getCarrinho());
         response.put("userJogos", existingUser.getJogos());
 

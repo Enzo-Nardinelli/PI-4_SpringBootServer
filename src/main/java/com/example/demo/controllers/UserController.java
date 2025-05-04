@@ -48,10 +48,10 @@ public class UserController {
     }
 
     // Endpoint para finalizar a compra
-    @PutMapping("/{id}/carrinho/finalizar")
-    public ResponseEntity<UserModel> finalizarCompra(@PathVariable String id) {
-        String idWithoutQuotes = id.replace("\"", "");
-        UserModel user = userRepository.findById(idWithoutQuotes).orElse(null);
+    @PutMapping("/{email}/carrinho/finalizar")
+    public ResponseEntity<UserModel> finalizarCompra(@PathVariable String email) {
+        String emailWithoutQuotes = email.replace("\"", "");
+        UserModel user = userRepository.findByEmail(emailWithoutQuotes).orElse(null);
 
         if (user == null) {
             return ResponseEntity.notFound().build();

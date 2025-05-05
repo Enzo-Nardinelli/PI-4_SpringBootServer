@@ -56,8 +56,6 @@ public class AuthController {
 
         Map<String, Object> response = new HashMap<>();
         response.put("user", existingUser); // CORRIGIR!!!!!!!!!!!!!!!!!!!!!!!!
-        response.put("userCarrinho", existingUser.getCarrinho());
-        response.put("userJogos", existingUser.getJogos());
 
         return ResponseEntity.ok(response);
     }

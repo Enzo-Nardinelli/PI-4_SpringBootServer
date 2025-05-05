@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import com.example.demo.models.Game;
 
 import java.util.List;
 
@@ -14,7 +15,9 @@ public class Pedido {
     private Double frete;
     private String enderecoEntrega;
     private String formaPagamento;
-    private List<ItemPedido> itens;
+    private List<String> itens;
+    //private Liste<double> precos;
+    private String userId;
 
     public String getId() {
         return id;
@@ -48,19 +51,43 @@ public class Pedido {
         this.formaPagamento = formaPagamento;
     }
 
-    public List<ItemPedido> getItens() {
+    public List<String> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemPedido> itens) {
+    public void setItens(List<String> itens) {
         this.itens = itens;
     }
-
-    public Double getTotalProdutos() {
-        return itens.stream().mapToDouble(i -> i.getPreco() * i.getQuantidade()).sum();
+    
+    public String getUserId(){
+        return this.userId;
+    }
+    
+    public void setUserId(String userId){
+        this.userId = userId;
     }
 
-    public Double getTotalGeral() {
-        return getTotalProdutos() + (frete != null ? frete : 0);
-    }
+    //public Double getTotalProdutos() {
+    //return itens.stream()
+    //            .mapToDouble(i -> i.getPrice())
+    //            .sum();
+    //}
+
+
+    //public Double getTotalGeral() {
+    //    return getTotalProdutos() + (frete != null ? frete : 0);
+   // }
+    
+    @Override
+    public String toString() {
+        return "Pedido{" +
+           "id='" + id + '\'' +
+           ", frete=" + frete +
+           ", enderecoEntrega='" + enderecoEntrega + '\'' +
+           ", formaPagamento='" + formaPagamento + '\'' +
+           ", itens=" + itens +
+           ", userId='" + userId + '\'' +
+           '}';
+}
+
 }

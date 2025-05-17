@@ -176,7 +176,11 @@ public class UserModel {
     public List<String> getUserCarrinho(){
         return this.carrinho;
     }
-
+    
+    public void setUserCarrinho(List<String> carrinho) {
+        this.carrinho = carrinho;
+    }
+    
     @Override
     public String toString() {
         return "UserModel{" +

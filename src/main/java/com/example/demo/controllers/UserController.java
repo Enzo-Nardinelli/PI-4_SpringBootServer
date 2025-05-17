@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
 
 import com.example.demo.models.UserModel;
 import com.example.demo.repositories.UserRepository;
@@ -74,6 +76,23 @@ public class UserController {
 
         return ResponseEntity.ok(user.getUserCarrinho());
     }
+    
+    // Endpoint para atualizar todo o carrinho
+    @PutMapping("/{email}/carrinho")
+    public ResponseEntity<UserModel> updateCarrinho(@PathVariable String email, @RequestBody List<String> novoCarrinho) {
+        String emailWithoutQuotes = email.replace("\"", "");
+        UserModel user = userRepository.findByEmail(emailWithoutQuotes).orElse(null);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        user.setUserCarrinho(novoCarrinho);
+        userRepository.save(user);
+        return ResponseEntity.ok(user);
+    }
+
+
 
     // Endpoint para atualizar os dados do usuário
     @PutMapping("/{id}")

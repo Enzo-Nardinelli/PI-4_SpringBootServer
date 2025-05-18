@@ -3,6 +3,7 @@ package com.example.demo.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import com.example.demo.models.Game;
+import java.time.LocalDateTime;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class Pedido {
     //private Liste<double> precos;
     private String userId;
     private String status;
+    private double total;
+    private LocalDateTime data;
 
     public String getId() {
         return id;
@@ -74,6 +77,22 @@ public class Pedido {
     
     public void setStatus (String status) {
         this.status = status;
+    }
+    
+    public double getToatal() {
+        return this.total;
+    }
+    
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
     }
 
     //public Double getTotalProdutos() {

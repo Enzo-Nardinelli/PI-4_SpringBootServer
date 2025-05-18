@@ -27,6 +27,8 @@ public class UserModel {
 
     private List<String> jogos = new ArrayList<>();
     private List<String> carrinho = new ArrayList<>();
+    
+    private boolean isEstoquista = false;
 
     // Constructors
     public UserModel() {}
@@ -45,7 +47,7 @@ public class UserModel {
         this.enderecosEntrega = enderecosEntrega;
         this.enderecoEntregaPadrao = enderecoEntregaPadrao;
         this.username = username;
-        this.password = password;
+        this.password = password;;
     }
 
     // Getters and Setters
@@ -179,6 +181,14 @@ public class UserModel {
     
     public void setUserCarrinho(List<String> carrinho) {
         this.carrinho = carrinho;
+    }
+    
+    public boolean getIsEstoquista() {
+        return this.isEstoquista;
+    }
+    
+    public void setIsEstoquista(boolean isEstoquista) {
+        this.isEstoquista = isEstoquista;
     }
     
     @Override

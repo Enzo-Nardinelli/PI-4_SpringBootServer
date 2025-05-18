@@ -15,9 +15,10 @@ public class Pedido {
     private Double frete;
     private String enderecoEntrega;
     private String formaPagamento;
-    private List<String> itens;
+    private List<Game> itens;
     //private Liste<double> precos;
     private String userId;
+    private String status;
 
     public String getId() {
         return id;
@@ -51,11 +52,11 @@ public class Pedido {
         this.formaPagamento = formaPagamento;
     }
 
-    public List<String> getItens() {
+    public List<Game> getItens() {
         return itens;
     }
 
-    public void setItens(List<String> itens) {
+    public void setItens(List<Game> itens) {
         this.itens = itens;
     }
     
@@ -65,6 +66,14 @@ public class Pedido {
     
     public void setUserId(String userId){
         this.userId = userId;
+    }
+    
+    public String getStatus() {
+        return this.status;
+    }
+    
+    public void setStatus (String status) {
+        this.status = status;
     }
 
     //public Double getTotalProdutos() {
@@ -81,13 +90,14 @@ public class Pedido {
     @Override
     public String toString() {
         return "Pedido{" +
-           "id='" + id + '\'' +
-           ", frete=" + frete +
-           ", enderecoEntrega='" + enderecoEntrega + '\'' +
-           ", formaPagamento='" + formaPagamento + '\'' +
-           ", itens=" + itens +
-           ", userId='" + userId + '\'' +
-           '}';
+                "id='" + id + '\'' +
+                ", frete=" + frete +
+                ", enderecoEntrega='" + enderecoEntrega + '\'' +
+                ", formaPagamento='" + formaPagamento + '\'' +
+                ", itens=" + itens +
+                ", userId='" + userId + '\'' +
+                ", status='" + status + '\'' +
+                '}';
 }
 
 }

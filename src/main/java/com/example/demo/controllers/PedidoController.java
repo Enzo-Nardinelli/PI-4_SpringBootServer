@@ -39,6 +39,7 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<?> criar(@RequestBody Pedido pedido) {
         System.out.println("Pedido: " + pedido);
+        System.out.println(pedido);
 
         try {
             Pedido saved = pedidoRepository.save(pedido);

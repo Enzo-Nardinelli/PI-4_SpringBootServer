@@ -79,7 +79,7 @@ public class Pedido {
         this.status = status;
     }
     
-    public double getToatal() {
+    public double getTotal() {
         return this.total;
     }
     

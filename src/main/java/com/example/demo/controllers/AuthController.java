@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.models.UserModel;
 import com.example.demo.repositories.UserRepository;
+import com.example.demo.repositories.AdminUserRepository;
+import com.example.demo.models.AdminUser;
+
+import java.util.Optional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +21,9 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private AdminUserRepository adminRepo;
 
     // Método para registrar o usuário
     @PostMapping("/register")
@@ -28,7 +35,7 @@ public class AuthController {
         }
 
         userRepository.save(user);
-        return ResponseEntity.ok(Map.of("Success", "User registered successfully"));
+            return ResponseEntity.ok("Usuario registrado");
     }
 
     // Método para fazer o login do usuário
@@ -95,5 +102,33 @@ public class AuthController {
 
         // Retornar a resposta
         return ResponseEntity.ok(Map.of("Success", "User updated successfully", "user", existingUser));
+    }
+    
+    @PostMapping("/backofficelogin")
+    public ResponseEntity<?> login(@RequestBody AdminUser credentials) {
+        Optional<AdminUser> userOpt = adminRepo.findByName(credentials.getName());
+
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(401).body("Usuário não encontrado.");
+        }
+
+        AdminUser user = userOpt.get();
+
+        if (!user.getPassword().equals(credentials.getPassword())) {
+            return ResponseEntity.status(401).body("Senha incorreta.");
+        }
+
+        return ResponseEntity.ok("Login bem-sucedido para o usuário: " + user.getName());
+    }
+    
+    @PostMapping("/backofficecadastro")
+    public ResponseEntity<?> register(@RequestBody AdminUser user) {
+        Optional<AdminUser> existing = adminRepo.findByName(user.getName());
+        if (existing.isPresent()) {
+            return ResponseEntity.badRequest().body("Usuário já existe.");
+        }
+
+        adminRepo.save(user);
+        return ResponseEntity.ok("Cadastro realizado com sucesso.");
     }
 }

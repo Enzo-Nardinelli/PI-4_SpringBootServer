@@ -119,4 +119,14 @@ public class UserController {
 
         return ResponseEntity.ok(user);
     }
+    
+    // Endpoint para obter todos os usuários
+    @GetMapping("/")
+    public ResponseEntity<List<UserModel>> getAllUsers() {
+        List<UserModel> users = userRepository.findAll();
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build(); // Return 204 if no users are found
+        }
+        return ResponseEntity.ok(users); // Return 200 with the list of users
+    }
 }

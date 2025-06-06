@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controllers;
 
 import com.example.demo.model.Pedido;
 import com.example.demo.repositories.PedidoRepository;
